@@ -5,7 +5,7 @@ param (
 )
 $RootDir = $PWD
 
-. ./watchFile.ps1
+. $PSScriptRoot/watchFile.ps1
 
 $logPath = "out.txt"
 $programName = (Get-Command -name dosbox-x).path
@@ -20,6 +20,11 @@ $dosDir = [System.IO.Path]::GetDirectoryName($programName)
 if ($file -eq "") {
     Write-Host "Invalid input"
     exit(1)
+}
+else {
+    if($file[1] -ne ':'){
+        $file = "$RootDir\$file"
+    }
 }
 
 $mountDir = [System.IO.Path]::GetDirectoryName("$file")

@@ -16,24 +16,33 @@ if ($programName -eq "") {
 }
 
 $dosDir = [System.IO.Path]::GetDirectoryName($programName)
-
-$mountDir = [System.IO.Path]::GetDirectoryName("$RootDir\$file")
+if($file[1] -eq ':'){
+    $mountDir = [System.IO.Path]::GetDirectoryName("$file")
+}
+else{
+    $mountDir = [System.IO.Path]::GetDirectoryName("$RootDir\$file")
+}
 $fName = [System.IO.Path]::GetFileName("$file")
 $fSrc = [System.IO.Path]::GetFileNameWithoutExtension("$file") + ".asm"
+
+#Write-Host $file $mountDir $mountDir $fName $fSrc
+if($mountDir -eq "" -OR $mountDir -eq $null){
+    $mountDir = "."
+}
 
 # Here you can add stuff that dos will execute on launch (keyb yu for example)
 $prep = "mount C `"$dosDir\drivec`"
 C:
 SET PATH=%PATH%;C:\TASM\BIN
 KEYB yu
-mount F `"$mountDir`""
+mount F $mountDir"
 
 $dosDebugDir = "C:\DEBUGING"
 
-$argsC = "mkdir `"$dosDebugDir`"
-cd `"$dosDebugDir`"
-copy `"F:\$fName $dosDebugDir\`"
-copy `"F:\$fSrc $dosDebugDir`""
+$argsC = "mkdir $dosDebugDir
+cd $dosDebugDir
+copy F:\$fName $dosDebugDir\
+copy F:\$fSrc $dosDebugDir"
 
 $argsR = "td C:\DEBUGING\$fName"
 

@@ -7,7 +7,7 @@ param (
 
 $RootDir = $PWD
 
-. ./watchFile.ps1
+. $PSScriptRoot/watchFile.ps1
 
 $logPath = "out.txt"
 $programName = (Get-Command -name dosbox-x).path
@@ -24,14 +24,25 @@ if ($file -eq "") {
     exit(1)
 }
 
+if($file[1] -ne ':'){
+    $file = "$RootDir\$file"
+}
+
 $mountInDir = [System.IO.Path]::GetDirectoryName("$file")
 
 if (($out -eq $null) -OR ($out -eq "")) {
     $out = $mountInDir
     Write-Host "I tried $out"
 }
+else{
+    if($out[1] -ne ':'){
+        $out = "$RootDir\$out"
+    }
+}
 
-$mountOutDir = [System.IO.Path]::GetDirectoryName("$out")
+
+#$mountOutDir = [System.IO.Path]::GetDirectoryName("$out")
+$mountOutDir = $out
 
 $inFname = [System.IO.Path]::GetFileName("$file")
 $outBase = [System.IO.Path]::GetFileNameWithoutExtension("$file")
