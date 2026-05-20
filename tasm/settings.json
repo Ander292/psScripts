@@ -1,0 +1,30 @@
+{
+    "terminal.integrated.cwd": "${workspaceFolder}",
+
+    "actionButtons": {
+
+        "defaultColor": "white",
+        "reloadButton": "↻",
+        "loadNpmCommands": false,
+        "commands": [
+            {
+                "name": "$(tools) Build",
+                "color": "lime",
+                "singleInstance": true,
+                "command": "compile.ps1 ${file} -keepLog 0"
+            },
+            {
+                "name": "$(triangle-right) Run",
+                "color": "purple",
+                "singleInstance": true,
+                "command": "run.ps1 ${fileBasenameNoExtension}.exe"
+            },
+            {
+                "name": "$(debug-console) Debug",
+                "color": "orange",
+                "singleInstance": true,
+                "command": "debug.ps1 ${fileBasenameNoExtension}.exe"
+            }
+        ]
+    }
+}

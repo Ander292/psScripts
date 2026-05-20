@@ -36,6 +36,5 @@ debug.ps1 [string:file]
 watchFile.ps1 [string:Path] [string:StopToken] [int:IdleTimeoutSeconds]
     - contains a single function used internally by the scripts to display log file to stdout in real time
 
-.vscode:
-    settings.json
-        - For the action buttons plugin buttons (useless but cool)
+settings.json
+    - For the action buttons plugin buttons (useless but cool)
