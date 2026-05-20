@@ -7,9 +7,9 @@ The output is routed to a file and from there read into stdout
 
 To use these scripts you need to:
     1) Have dosbox-x emulator installed and its exe added to PATH (important)
-        - You can get dosbox-x [https://dosbox-x.com](here).
+        - You can get dosbox-x [here](https://dosbox-x.com).
     2) Have TASM installed in a folder nammed diskc inside the dosbox-x directory
-        - You can get TASM for dosbox-x [https://github.com/zajo/TASM/tree/master](here)
+        - You can get TASM for dosbox-x [here](https://github.com/zajo/TASM/tree/master)
         - The folder will be mounted as C drive inside dosbox
 
 compile.ps1 [string:in] [string:out] [int:keepLog] [int:timeout]
