@@ -7,7 +7,7 @@ param (
 
 $RootDir = $PWD
 
-. watchFile.ps1
+. ./watchFile.ps1
 
 $logPath = "out.txt"
 $programName = (Get-Command -name dosbox-x).path
@@ -24,17 +24,15 @@ if ($file -eq "") {
     exit(1)
 }
 
+$mountInDir = [System.IO.Path]::GetDirectoryName("$file")
 
-
-$mountInDir = [System.IO.Path]::GetDirectoryName("$RootDir\$file")
-
-if ($out -eq $null) {
+if (($out -eq $null) -OR ($out -eq "")) {
     $out = $mountInDir
-    Write-Host $out
+    Write-Host "I tried $out"
 }
-else {
-    $mountOutDir = [System.IO.Path]::GetDirectoryName("$RootDir\$out")
-}
+
+$mountOutDir = [System.IO.Path]::GetDirectoryName("$out")
+
 $inFname = [System.IO.Path]::GetFileName("$file")
 $outBase = [System.IO.Path]::GetFileNameWithoutExtension("$file")
 $outFname =  $outBase + ".obj"
@@ -48,7 +46,7 @@ mount E `"$mountInDir`"
 mount F `"$mountOutDir`""
 
 $argsA = "TASM `"E:\$inFname`" /zi -o `"F:\$outFname`""
-$argsL = "TLINK /x /v `"F:\$outFname`",`"F:\$outBase.exe`""
+$argsL = "TLINK /x /v F:\$outFname,F:\$outBase.exe"
 
 #echo "Output:" > "$MountOutDir\$logPath"
 "Output:" | Out-File -FilePath "$MountOutDir\$logPath" -Encoding utf8

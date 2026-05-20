@@ -5,10 +5,16 @@ param (
 )
 $RootDir = $PWD
 
-. watchFile.ps1
+. ./watchFile.ps1
 
 $logPath = "out.txt"
 $programName = (Get-Command -name dosbox-x).path
+
+if ($programName -eq "" -OR $programName -eq $null) {
+    Write-Host "Dosbox not found"
+    exit(1)
+}
+
 $dosDir = [System.IO.Path]::GetDirectoryName($programName)
 
 if ($file -eq "") {
@@ -16,7 +22,7 @@ if ($file -eq "") {
     exit(1)
 }
 
-$mountDir = [System.IO.Path]::GetDirectoryName("$RootDir\$file")
+$mountDir = [System.IO.Path]::GetDirectoryName("$file")
 $fName = [System.IO.Path]::GetFileName("$file")
 
 # Here you can add stuff that dos will execute on launch (keyb yu for example)

@@ -10,6 +10,7 @@ cnt     dw 0
 buffer  db 100 DUP(?)
 pos     dw 0
 len     dw -1
+
 .code
 
 main:
@@ -96,4 +97,4 @@ loop_convert_end:
     mov ah, 4ch
     int 21h
 
-end 
+end main

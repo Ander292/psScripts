@@ -53,11 +53,10 @@ function Watch-File {
                     Write-Host $text -NoNewline
                 }
             }
-
             if ($idleStopwatch.Elapsed.TotalSeconds -ge $IdleTimeoutSeconds) {
+                Write-Host "`nTimeouted($IdleTimeoutSeconds)" -ForegroundColor red
                 break
             }
-
             Start-Sleep -Milliseconds 100 # I feel sleepy
         }
     }
