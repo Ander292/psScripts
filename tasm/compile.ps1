@@ -32,7 +32,7 @@ $mountInDir = [System.IO.Path]::GetDirectoryName("$file")
 
 if (($out -eq $null) -OR ($out -eq "")) {
     $out = $mountInDir
-    Write-Host "I tried $out"
+    #Write-Host "I tried $out"
 }
 else{
     if($out[1] -ne ':'){
