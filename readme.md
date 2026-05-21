@@ -1,6 +1,13 @@
 # All sorts of powershell scripts I wrote to do random stuff
 
-tasm:
+## compile:
+
+compile.ps1 [string:mode]
+- A single script I use to compile my c projects. It expects the mingw gcc compiler added to path. 
+- It will compile the c files into obj files and then link them. It will also compile the rc script (if present) inside the resources folder into an obj file so the linker can link it properly
+- build will compile the project, run will run it and full will do both
+
+## tasm:
 
 Three scripts for assembling and launching tasm files using the dosbox-x emulator
 The output is routed to a file and from there read into stdout
